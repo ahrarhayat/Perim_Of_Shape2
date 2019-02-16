@@ -110,20 +110,59 @@ public class PerimeterAssignmentRunner {
 
     public double getLargestPerimeterMultipleFiles() {
        DirectoryResource dr = new DirectoryResource();
+       double last_perim=0;
+       double largest_perim=0;
+       
  for (File f : dr.selectedFiles()) {
-    
+     FileResource fr = new FileResource(f); 
+     Shape s = new Shape(fr);
+     double curr_perim = getPerimeter(s);
+     if(last_perim>curr_perim)
+     {
+       largest_perim=last_perim;
+        }
+        else
+        {
+            largest_perim=curr_perim;
+        }
+        last_perim=curr_perim;
  }
-        return 0.0;
+        return largest_perim;
     }
 
     public String getFileWithLargestPerimeter() {
         // Put code here
-        File temp = null;    // replace this code
-        return temp.getName();
+        DirectoryResource dr = new DirectoryResource();
+        File Current=null;
+        double last_perim=0;
+        double largest_perim=0;
+        File LargestFile = null;
+        File last=null;
+        for (File f : dr.selectedFiles()) {
+     FileResource fr = new FileResource(f); 
+     Shape s = new Shape(fr);
+     double curr_perim = getPerimeter(s);
+     File current=f;
+     if(last_perim>curr_perim)
+     {
+       largest_perim=last_perim;
+        LargestFile = last;
+        }
+        else
+        {
+            largest_perim=curr_perim;
+             LargestFile = current;
+        }
+        last_perim=curr_perim;
+        last=current;
+       
+ }
+          // replace this code
+        return LargestFile.getName();
     }
 
     public void testPerimeter () {
-       FileResource fr = new FileResource();
+        FileResource fr = new FileResource();
         Shape s = new Shape(fr);
         double length = getPerimeter(s);
         int NumberOfPoints=getNumPoints(s);
@@ -138,11 +177,16 @@ public class PerimeterAssignmentRunner {
     }
     
     public void testPerimeterMultipleFiles() {
+      
         // Put code here
+        
     }
 
     public void testFileWithLargestPerimeter() {
         // Put code here
+        double length=getLargestPerimeterMultipleFiles();
+        String Largest = getFileWithLargestPerimeter();
+        System.out.println("This is the largest perimeter of all the shapes "+ length + " and it's from the file "+ Largest);
     }
 
     // This method creates a triangle that you can use to test your other methods
@@ -168,6 +212,7 @@ public class PerimeterAssignmentRunner {
 
     public static void main (String[] args) {
         PerimeterAssignmentRunner pr = new PerimeterAssignmentRunner();
+        pr.testFileWithLargestPerimeter();
         pr.testPerimeter();
     }
 }
