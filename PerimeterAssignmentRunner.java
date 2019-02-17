@@ -97,7 +97,7 @@ public class PerimeterAssignmentRunner {
                 LargestX=CurrX;
           
             }
-            prevX=CurrX;
+            prevX=LargestX;
             prevPt=currPt;
             
             
