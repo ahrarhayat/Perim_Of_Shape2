@@ -1,4 +1,4 @@
-package Perim_Of_Shape2;
+ 
 
 import edu.duke.*;
 import java.io.File;
@@ -61,8 +61,7 @@ public class PerimeterAssignmentRunner {
         {
             
             double currDist = prevPt.distance(currPt);
-            
-            
+           
             if(prevDist>currDist)
             {
                 LargestDist=prevDist;
@@ -70,11 +69,10 @@ public class PerimeterAssignmentRunner {
             else
             {
                 LargestDist=currDist;
-          
             }
-            prevDist = currDist;
+            prevDist = LargestDist;
             prevPt=currPt;
-            
+           
             
             
         }
@@ -176,6 +174,8 @@ public class PerimeterAssignmentRunner {
         System.out.println("The largest x is "+LargestX);
     }
     
+   
+    
     public void testPerimeterMultipleFiles() {
       
         // Put code here
@@ -214,5 +214,6 @@ public class PerimeterAssignmentRunner {
         PerimeterAssignmentRunner pr = new PerimeterAssignmentRunner();
         pr.testFileWithLargestPerimeter();
         pr.testPerimeter();
+      
     }
 }
